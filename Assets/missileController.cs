@@ -8,6 +8,7 @@ public class missileController : MonoBehaviour {
     public GameObject detector;
     public float maxRotSpeed = 1;
     public float slerpSpeed = 1;
+    public GameObject owner;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class missileController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        this.GetComponent<Rigidbody>().AddForce(this.transform.up * accel);
+        this.GetComponent<Rigidbody>().AddForce(this.transform.forward * accel);
         //if (detector.GetComponent<missileDetector>().target > 0) { 
         //    int currTarget = detector.GetComponent<missileDetector>().target;
 
@@ -28,12 +29,14 @@ public class missileController : MonoBehaviour {
         //}
         if (detector.GetComponent<missileDetector>().targetGO != null)
         {
+            //this.GetComponent<Rigidbody>().AddForce(this.transform.up * accel);
+
             GameObject target = detector.GetComponent<missileDetector>().targetGO;
             //print("MISSILE TARGETING PLAYER " + target.GetComponent<flightController>().playerNumber);
             Vector3 direction = (target.transform.position - this.transform.position);
             Debug.DrawRay(this.transform.position, direction, Color.blue, 0.1f);
             //Quaternion slerpedDir = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.transform.forward, direction), slerpSpeed);
-            Quaternion slerpedDir = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(this.transform.forward, direction), slerpSpeed);
+            Quaternion slerpedDir = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(direction, this.transform.up), slerpSpeed);
             // this.transform.rotation = Quaternion.LookRotation(this.transform.forward, direction);
             this.transform.rotation = slerpedDir;
             
@@ -42,7 +45,7 @@ public class missileController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Player")
+        if((other.gameObject.tag == "Player")&&(other.gameObject != owner))
         {
             other.gameObject.GetComponent<flightController>().die();
         }

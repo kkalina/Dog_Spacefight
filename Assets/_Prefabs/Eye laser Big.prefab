@@ -20,9 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4522838670777834}
   - component: {fileID: 33310237679113578}
-  - component: {fileID: 135122757580771230}
   - component: {fileID: 23321335844638918}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Iris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4915374826207970}
   - component: {fileID: 114506236895173334}
-  m_Layer: 9
+  - component: {fileID: 135415507548809232}
+  m_Layer: 8
   m_Name: Eye laser Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4288378083149428}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,10 +69,26 @@ GameObject:
   m_Component:
   - component: {fileID: 4997843794800166}
   - component: {fileID: 33911820018464470}
-  - component: {fileID: 135126568652562638}
   - component: {fileID: 23484282233763284}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Outer Eye (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1874929902927666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4735174087562254}
+  - component: {fileID: 135706976801854970}
+  - component: {fileID: 114742021098105804}
+  m_Layer: 8
+  m_Name: EyeDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1780527009671974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.87}
+  m_LocalPosition: {x: 0, y: 0, z: 1.568}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4915374826207970}
@@ -104,6 +120,19 @@ Transform:
   m_Father: {fileID: 4997843794800166}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4735174087562254
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874929902927666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.19999999, z: 0.19999999}
+  m_Children: []
+  m_Father: {fileID: 4915374826207970}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4915374826207970
 Transform:
   m_ObjectHideFlags: 1
@@ -111,11 +140,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629749895757154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.8, y: 59.6, z: -83.5}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 34.86994, y: 23.561693, z: -53.9}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4997843794800166}
   - {fileID: 4288378083149428}
+  - {fileID: 4735174087562254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -228,29 +258,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 0}
   firePoint: {fileID: 0}
-  laser: {fileID: 1636006019382524, guid: 214feba215c8f0d488059e1e9557d367, type: 2}
-  laserSpeed: 30
---- !u!135 &135122757580771230
+  laser: {fileID: 1414228283656480, guid: 33043ad9ba2a21643be56c31065cace9, type: 2}
+  laserSpeed: 20
+  fireRate: 1
+  ExplosionDeath: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  health: 20
+  eyeDetector: {fileID: 114742021098105804}
+--- !u!114 &114742021098105804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874929902927666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b019ae7f3f41e4587e7bfe64e648e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: 0
+  targetGO: {fileID: 0}
+--- !u!135 &135415507548809232
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455204584964830}
+  m_GameObject: {fileID: 1629749895757154}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.8
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135126568652562638
+--- !u!135 &135706976801854970
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809288313672672}
+  m_GameObject: {fileID: 1874929902927666}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}

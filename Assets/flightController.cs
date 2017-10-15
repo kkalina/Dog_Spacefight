@@ -47,6 +47,9 @@ public class flightController : MonoBehaviour {
     public TrailRenderer LTip;
     public TrailRenderer RTip;
 
+    public GameObject missileLauncherL;
+    public GameObject missileLauncherR;
+
     // Use this for initialization
     void Start () {
         afterburner.GetComponent<ParticleSystem>().enableEmission = false;
@@ -112,6 +115,9 @@ public class flightController : MonoBehaviour {
     public float staticAccMultiplier = 0.5f;
 
     public float trailMult = 2.5f;
+
+    public float missileCooldown = 0.5f;
+    private float missileTimer;
 
     private void FixedUpdate()
     {
@@ -191,7 +197,14 @@ public class flightController : MonoBehaviour {
         LTip.time = t;
         RTip.time = t;
 
+        if (afterburnerOn)
+        {
+            this.GetComponent<AudioSource>().pitch = 0.8f+(this.GetComponent<Rigidbody>().velocity.magnitude*0.1f);
+        }
     }
+
+    public GameObject missile;
+    private bool leftMissile = false;
 
     // Update is called once per frame
     void Update () {
@@ -244,6 +257,7 @@ public class flightController : MonoBehaviour {
             ABGlow.GetComponent<ParticleSystem>().enableEmission = true;
             //afterburner.SetActive(true);
             afterburnerOn = true;
+            this.GetComponent<AudioSource>().Play();
             cam.GetComponent<shake>().shakeSources++;
             burnerLight.SetActive(true);
         }
@@ -253,12 +267,34 @@ public class flightController : MonoBehaviour {
             ABGlow.GetComponent<ParticleSystem>().enableEmission = false;
             //afterburner.SetActive(false);
             afterburnerOn = false;
+            this.GetComponent<AudioSource>().Stop();
             cam.GetComponent<shake>().shakeSources--;
             burnerLight.SetActive(false);
             if (cam.GetComponent<shake>().shakeSources < 0)
             {
                 cam.GetComponent<shake>().shakeSources = 0;
             }
+        }
+
+        if ((state.Buttons.A == ButtonState.Pressed) && ((missileTimer+missileCooldown) < Time.time))
+        {
+            GameObject missInst = Instantiate(missile);
+            if (leftMissile)
+            {
+                missInst.transform.position = missileLauncherL.transform.position;
+                missInst.transform.rotation = missileLauncherL.transform.rotation;
+                leftMissile = false;
+            }
+            else
+            {
+                missInst.transform.position = missileLauncherR.transform.position;
+                missInst.transform.rotation = missileLauncherR.transform.rotation;
+                leftMissile = true;
+
+            }
+            missInst.GetComponent<missileController>().owner = this.gameObject;
+            missInst.GetComponent<Rigidbody>().velocity = this.GetComponent<Rigidbody>().velocity;
+            missileTimer = Time.time;
         }
 
         //death
@@ -282,8 +318,11 @@ public class flightController : MonoBehaviour {
         this.GetComponent<BoxCollider>().enabled = false;
         afterburner.SetActive(false);
         burnerLight.SetActive(false);
+        this.GetComponent<AudioSource>().Stop();
 
         this.enabled = false;
+
+        Destroy(this.gameObject);
     }
 
     public GameObject sparks;

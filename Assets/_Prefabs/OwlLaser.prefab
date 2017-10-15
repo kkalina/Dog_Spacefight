@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 108799332355789358}
   - component: {fileID: 114564515086481678}
   - component: {fileID: 54528070278679604}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: OwlLaser
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33302563396879630}
   - component: {fileID: 136403968031453922}
   - component: {fileID: 23343784776337008}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,8 +140,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 6.6
-  m_Range: 9.36
+  m_Intensity: 13.1
+  m_Range: 15.32
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -177,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccd82b801f0ee49a466032f73ea133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!136 &136403968031453922
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jellyfish : MonoBehaviour {
+public class Jellyfish : MonoBehaviour
+{
     public float speed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         this.GetComponent<Rigidbody>().velocity = transform.forward * speed;
     }
 
@@ -19,5 +22,4 @@ public class Jellyfish : MonoBehaviour {
     {
         this.transform.RotateAround(this.transform.up, 180);
     }
-
 }

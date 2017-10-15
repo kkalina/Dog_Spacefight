@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class OwlLaser : MonoBehaviour {
 
-    public float speed = 10f;
 
 	// Use this for initialization
 	void Start () {
-		
+        Destroy(this.gameObject, 15f);
 	}
 	
 	// Update is called once per frame

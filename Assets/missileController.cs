@@ -28,6 +28,8 @@ public class missileController : MonoBehaviour {
         //}
         if (detector.GetComponent<missileDetector>().targetGO != null)
         {
+            //this.GetComponent<Rigidbody>().AddForce(this.transform.up * accel);
+
             GameObject target = detector.GetComponent<missileDetector>().targetGO;
             //print("MISSILE TARGETING PLAYER " + target.GetComponent<flightController>().playerNumber);
             Vector3 direction = (target.transform.position - this.transform.position);

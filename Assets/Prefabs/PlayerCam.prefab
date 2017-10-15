@@ -150,6 +150,10 @@ MonoBehaviour:
   height: 0
   easing: 0.45
   childCam: {fileID: 1009139024303110}
+  stationaryMode: 0
+  maxStatDist: 5
+  statMoveSpeed: 0.002
+  statRotation: {fileID: 0}
 --- !u!114 &114395448726354376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,7 +204,7 @@ MonoBehaviour:
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -235,6 +239,10 @@ MonoBehaviour:
   height: 0
   easing: 0.3
   childCam: {fileID: 0}
+  stationaryMode: 0
+  maxStatDist: 50
+  statMoveSpeed: 10
+  statRotation: {fileID: 0}
 --- !u!124 &124794533972981680
 Behaviour:
   m_ObjectHideFlags: 1

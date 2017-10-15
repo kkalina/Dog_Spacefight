@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4522838670777834}
   - component: {fileID: 33310237679113578}
-  - component: {fileID: 135122757580771230}
   - component: {fileID: 23321335844638918}
   m_Layer: 8
   m_Name: Iris
@@ -38,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915374826207970}
   - component: {fileID: 114506236895173334}
+  - component: {fileID: 135415507548809232}
   m_Layer: 8
   m_Name: Eye laser Big
   m_TagString: Untagged
@@ -69,7 +69,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4997843794800166}
   - component: {fileID: 33911820018464470}
-  - component: {fileID: 135126568652562638}
   - component: {fileID: 23484282233763284}
   m_Layer: 8
   m_Name: Outer Eye (2)
@@ -102,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1780527009671974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.05}
+  m_LocalPosition: {x: 0, y: 0, z: 1.568}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4915374826207970}
@@ -260,8 +259,10 @@ MonoBehaviour:
   targetPlayer: {fileID: 0}
   firePoint: {fileID: 0}
   laser: {fileID: 1414228283656480, guid: 33043ad9ba2a21643be56c31065cace9, type: 2}
-  laserSpeed: 37
-  fireRate: 2
+  laserSpeed: 20
+  fireRate: 1
+  ExplosionDeath: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  health: 20
   eyeDetector: {fileID: 114742021098105804}
 --- !u!114 &114742021098105804
 MonoBehaviour:
@@ -276,29 +277,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: 0
   targetGO: {fileID: 0}
---- !u!135 &135122757580771230
+--- !u!135 &135415507548809232
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455204584964830}
+  m_GameObject: {fileID: 1629749895757154}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135126568652562638
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809288313672672}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135706976801854970
 SphereCollider:

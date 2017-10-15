@@ -44,6 +44,9 @@ public class flightController : MonoBehaviour {
 
     public GameObject TPC;
 
+    public TrailRenderer LTip;
+    public TrailRenderer RTip;
+
     // Use this for initialization
     void Start () {
         afterburner.GetComponent<ParticleSystem>().enableEmission = false;
@@ -107,6 +110,8 @@ public class flightController : MonoBehaviour {
 
     public float staticRotMultiplier = 2.0f;
     public float staticAccMultiplier = 0.5f;
+
+    public float trailMult = 2.5f;
 
     private void FixedUpdate()
     {
@@ -179,6 +184,13 @@ public class flightController : MonoBehaviour {
             acc = acc * staticAccMultiplier;
             this.GetComponent<Rigidbody>().AddForce(transform.forward * acc);
         }
+
+
+        //Trail length based on speed
+        float t = this.gameObject.GetComponent<Rigidbody>().velocity.magnitude * trailMult;
+        LTip.time = t;
+        RTip.time = t;
+
     }
 
     // Update is called once per frame

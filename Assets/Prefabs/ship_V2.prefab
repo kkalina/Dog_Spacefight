@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33023769435633380}
   - component: {fileID: 65620404321751390}
   - component: {fileID: 23040231639548160}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33732563688176874}
   - component: {fileID: 65836093051552284}
   - component: {fileID: 23098800067709942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 23724302129467140}
   - component: {fileID: 54374708123151436}
   - component: {fileID: 114507240772875178}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ship_V2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 33220362273983584}
   - component: {fileID: 65507084949116380}
   - component: {fileID: 23181260436221934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wingtip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 33510785490183386}
   - component: {fileID: 65122577059406050}
   - component: {fileID: 23980859511228576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 198242985831118348}
   - component: {fileID: 135933923557336466}
   - component: {fileID: 114122743743730726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Afterburner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 136795135620154620}
   - component: {fileID: 23977467678472210}
   - component: {fileID: 114532084403435580}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: goon (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 136442876930935080}
   - component: {fileID: 23279982652295188}
   - component: {fileID: 114164149912462084}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: goon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4073456290693386}
   - component: {fileID: 96197991167511720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4549992521308884}
   - component: {fileID: 96582012401139380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4353163033116616}
   - component: {fileID: 108375893367384224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fireLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 33007101910158590}
   - component: {fileID: 65237021759644104}
   - component: {fileID: 23783745761723594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4125256851936220}
   - component: {fileID: 108867927899085808}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 33291042037950754}
   - component: {fileID: 65311594561750524}
   - component: {fileID: 23816442721413148}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wingtip (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4451073515008266}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: camAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 33722314014868726}
   - component: {fileID: 135508374366247012}
   - component: {fileID: 23200029458630606}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: POI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 4538854621503718}
   - component: {fileID: 199462360410506936}
   - component: {fileID: 198419848061750246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4002328035791474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

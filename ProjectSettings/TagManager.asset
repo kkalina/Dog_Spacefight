@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,17 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
+  - Boundary
+  - Player
+  - Boss
+  - Boss_Projectile
+=======
   - 
   - 
   - 
   - 
+>>>>>>> 5a79d4485786b3a25633fc1888ebe5d48c751f2b
   - 
   - 
   - 

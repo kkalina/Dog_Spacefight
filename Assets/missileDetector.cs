@@ -6,10 +6,11 @@ public class missileDetector : MonoBehaviour {
 
     public int target = 0;
     public GameObject targetGO;
+    public GameObject parent;
 
     void OnTriggerEnter(Collider other)
     {
-        if((other.gameObject.tag == "Player")&&(targetGO == null))
+        if((other.gameObject.tag == "Player")&&(targetGO == null)&&(other.gameObject != parent.GetComponent<missileController>().owner))
         {
             target = other.gameObject.GetComponent<flightController>().playerNumber;
             targetGO = other.gameObject;

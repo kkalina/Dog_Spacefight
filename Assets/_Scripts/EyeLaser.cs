@@ -10,6 +10,7 @@ public class EyeLaser : MonoBehaviour {
     public float laserSpeed = 10f;
     public float fireRate = 1f;
     float fireInterval = 0f;
+    public GameObject ExplosionDeath;
 
     public float health = 20f;
 
@@ -55,6 +56,8 @@ public class EyeLaser : MonoBehaviour {
             health -= 1;
 
             if (health <= 0) {
+                GameObject explosion;
+                explosion = Instantiate(ExplosionDeath, this.gameObject.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }

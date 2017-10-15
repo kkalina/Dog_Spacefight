@@ -116,6 +116,9 @@ public class flightController : MonoBehaviour {
 
     public float trailMult = 2.5f;
 
+    public float missileCooldown = 0.5f;
+    private float missileTimer;
+
     private void FixedUpdate()
     {
         state = GamePad.GetState(playerIndex);
@@ -201,6 +204,7 @@ public class flightController : MonoBehaviour {
     }
 
     public GameObject missile;
+    private bool leftMissile = false;
 
     // Update is called once per frame
     void Update () {
@@ -272,11 +276,25 @@ public class flightController : MonoBehaviour {
             }
         }
 
-        if (state.Buttons.A == ButtonState.Pressed)
+        if ((state.Buttons.A == ButtonState.Pressed) && ((missileTimer+missileCooldown) < Time.time))
         {
             GameObject missInst = Instantiate(missile);
-            missInst.transform.position = missileLauncherR.transform.position;
-            missInst.transform.rotation = missileLauncherR.transform.rotation;
+            if (leftMissile)
+            {
+                missInst.transform.position = missileLauncherL.transform.position;
+                missInst.transform.rotation = missileLauncherL.transform.rotation;
+                leftMissile = false;
+            }
+            else
+            {
+                missInst.transform.position = missileLauncherR.transform.position;
+                missInst.transform.rotation = missileLauncherR.transform.rotation;
+                leftMissile = true;
+
+            }
+            missInst.GetComponent<missileController>().owner = this.gameObject;
+            missInst.GetComponent<Rigidbody>().velocity = this.GetComponent<Rigidbody>().velocity;
+            missileTimer = Time.time;
         }
 
         //death
@@ -303,6 +321,8 @@ public class flightController : MonoBehaviour {
         this.GetComponent<AudioSource>().Stop();
 
         this.enabled = false;
+
+        Destroy(this.gameObject);
     }
 
     public GameObject sparks;

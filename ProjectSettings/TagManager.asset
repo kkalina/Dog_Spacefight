@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Bullet
   layers:
   - Default
@@ -15,13 +14,8 @@ TagManager:
   - UI
   - 
   - 
-<<<<<<< HEAD
-  - Boundary
-  - Player
-=======
-  - Boss
-  - Boss Attack
->>>>>>> 853742bcfeafdda6c54900c364d4f5e51f84dbc0
+  - 
+  - 
   - 
   - 
   - 

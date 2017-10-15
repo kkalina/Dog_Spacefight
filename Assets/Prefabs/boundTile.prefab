@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65269669325210298}
   - component: {fileID: 23398385718735522}
   - component: {fileID: 114399983035355164}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: boundTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

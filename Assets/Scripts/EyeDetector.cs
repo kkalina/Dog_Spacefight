@@ -5,7 +5,7 @@ using UnityEngine;
 public class EyeDetector : MonoBehaviour {
 
     public int target = 0;
-    public GameObject targetGO;
+    public GameObject targetGO = null;
 
     // Use this for initialization
     void Start () {

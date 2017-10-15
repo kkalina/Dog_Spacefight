@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 135706976801854970}
   - component: {fileID: 114742021098105804}
   m_Layer: 8
-  m_Name: DetectionRange
+  m_Name: EyeDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

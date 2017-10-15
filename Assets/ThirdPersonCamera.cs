@@ -10,7 +10,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     public bool stationaryMode = false;
     public float maxStatDist = 50;
-    public float statMoveSpeed = 10;
+    public float statMoveSpeed = 0.001f;
+    public Transform statRotation;
+
 
 	// Use this for initialization
 	void Update () {
@@ -23,6 +25,7 @@ public class ThirdPersonCamera : MonoBehaviour {
             else
             {
                 stationaryMode = true;
+                statRotation = this.transform;
             }
         }
         if (stationaryMode)
@@ -31,10 +34,13 @@ public class ThirdPersonCamera : MonoBehaviour {
             if (dist > maxStatDist)
             {
                 //this.transform.position = Vector3.MoveTowards(this.transform.position, poi.transform.position, statMoveSpeed);
-                this.transform.position = Vector3.Lerp(this.transform.position, poi.transform.position, statMoveSpeed);
+                this.transform.position = Vector3.Lerp(this.transform.position, poi.transform.position, dist * statMoveSpeed);
             }
+            //this.transform.rotation = statRotation.rotation;
         }
     }
+
+    
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -47,7 +53,8 @@ public class ThirdPersonCamera : MonoBehaviour {
         }
         else
         {
-            transform.LookAt(poi);
+            transform.LookAt(poi.position,statRotation.up);
+            //this.transform.rotation = statRotation.rotation;
         }
 	}
 }

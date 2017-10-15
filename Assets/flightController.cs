@@ -42,6 +42,8 @@ public class flightController : MonoBehaviour {
 
     public GameObject gunLight;
 
+    public GameObject TPC;
+
     // Use this for initialization
     void Start () {
         afterburner.GetComponent<ParticleSystem>().enableEmission = false;
@@ -103,21 +105,80 @@ public class flightController : MonoBehaviour {
         }
     }
 
+    public float staticRotMultiplier = 2.0f;
+    public float staticAccMultiplier = 0.5f;
+
     private void FixedUpdate()
     {
         state = GamePad.GetState(playerIndex);
 
+        //if (!TPC.GetComponent<ThirdPersonCamera>().stationaryMode)
+        //{
+        //    roll = state.ThumbSticks.Left.X;
+        //    pitch = state.ThumbSticks.Left.Y;
+
+        //}
+        //else
+        //{
+        //    roll = state.ThumbSticks.Right.X;
+        //    pitch = state.ThumbSticks.Right.Y;
+
+        //    roll = roll * staticRotMultiplier;
+        //    pitch = pitch * staticRotMultiplier;
+
+        //}
+
         roll = state.ThumbSticks.Left.X;
         pitch = state.ThumbSticks.Left.Y;
+        if (TPC.GetComponent<ThirdPersonCamera>().stationaryMode)
+        {
+                roll = roll * staticRotMultiplier;
+                pitch = pitch * staticRotMultiplier;
+
+        }
+
 
         this.GetComponent<Rigidbody>().AddTorque(transform.forward * -1 * roll * rollSpeed * Time.fixedDeltaTime);
         this.GetComponent<Rigidbody>().AddTorque(transform.right * pitch * pitchSpeed * Time.fixedDeltaTime);
 
+        //Yaw scheme
         yaw = state.ThumbSticks.Right.X;
         VYaw = state.ThumbSticks.Right.Y;
 
-        this.GetComponent<Rigidbody>().AddTorque(transform.up  * yaw * yawSpeed * Time.fixedDeltaTime);
+        this.GetComponent<Rigidbody>().AddTorque(transform.up * yaw * yawSpeed * Time.fixedDeltaTime);
         this.GetComponent<Rigidbody>().AddTorque(transform.right * -1.0f * VYaw * VYawSpeed * Time.fixedDeltaTime);
+
+
+        //if(((Mathf.Abs(state.ThumbSticks.Right.X) > 0.1f) || (Mathf.Abs(state.ThumbSticks.Right.Y) > 0.1f))&&(TPC.GetComponent<ThirdPersonCamera>().stationaryMode == false))
+        if ((state.Buttons.B == ButtonState.Pressed) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == false))
+        {
+            TPC.GetComponent<ThirdPersonCamera>().stationaryMode = true;
+            TPC.GetComponent<ThirdPersonCamera>().statRotation = TPC.transform;
+        }
+        //else if (((Mathf.Abs(state.ThumbSticks.Right.X) < 0.1f) && (Mathf.Abs(state.ThumbSticks.Right.Y) < 0.1f)) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == true))
+        else if ((state.Buttons.B == ButtonState.Released) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == true))
+
+        {
+            TPC.GetComponent<ThirdPersonCamera>().stationaryMode = false;
+        }
+
+        if (state.Buttons.RightShoulder == ButtonState.Pressed)
+        {
+            float acc = 0;
+            acc = accel * Time.fixedDeltaTime;
+            if (TPC.GetComponent<ThirdPersonCamera>().stationaryMode)
+            {
+                acc = acc * staticAccMultiplier;
+            }
+            this.GetComponent<Rigidbody>().AddForce(transform.forward * acc);
+        }
+        else if (TPC.GetComponent<ThirdPersonCamera>().stationaryMode)
+        {
+            float acc = 0;
+            acc = accel * Time.fixedDeltaTime;
+            acc = acc * staticAccMultiplier;
+            this.GetComponent<Rigidbody>().AddForce(transform.forward * acc);
+        }
     }
 
     // Update is called once per frame
@@ -131,12 +192,8 @@ public class flightController : MonoBehaviour {
         this.GetComponent<Rigidbody>().AddTorque(transform.forward * -1 * roll * rollSpeed * Time.deltaTime);
         this.GetComponent<Rigidbody>().AddTorque(transform.right * pitch * pitchSpeed * Time.deltaTime);
         */
-        if (state.Buttons.RightShoulder == ButtonState.Pressed)
-        {
-            this.GetComponent<Rigidbody>().AddForce(transform.forward * accel);
-        }
 
-        if (state.Buttons.LeftShoulder == ButtonState.Pressed)
+            if (state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
             gunLight.SetActive(true);
             if (gun1RefireTime <= 0)
@@ -169,7 +226,7 @@ public class flightController : MonoBehaviour {
             gun2RefireTime = 0.5f * refireDelay;
         }
 
-            if ((state.Buttons.RightShoulder == ButtonState.Pressed) && (!afterburnerOn))
+            if (((state.Buttons.RightShoulder == ButtonState.Pressed)||(TPC.GetComponent<ThirdPersonCamera>().stationaryMode)) && (!afterburnerOn))
         {
             afterburner.GetComponent<ParticleSystem>().enableEmission = true;
             ABGlow.GetComponent<ParticleSystem>().enableEmission = true;
@@ -178,7 +235,7 @@ public class flightController : MonoBehaviour {
             cam.GetComponent<shake>().shakeSources++;
             burnerLight.SetActive(true);
         }
-        if ((state.Buttons.RightShoulder == ButtonState.Released) && (afterburnerOn))
+        if (((state.Buttons.RightShoulder == ButtonState.Released)&&(!TPC.GetComponent<ThirdPersonCamera>().stationaryMode)) && (afterburnerOn))
         {
             afterburner.GetComponent<ParticleSystem>().enableEmission = false;
             ABGlow.GetComponent<ParticleSystem>().enableEmission = false;

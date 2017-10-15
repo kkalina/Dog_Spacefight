@@ -38,6 +38,8 @@ public class levelController : MonoBehaviour {
             player1cam.GetComponent<ThirdPersonCamera>().poi = player1.GetComponent<flightController>().POI.transform;
 
             player1.GetComponent<flightController>().cam = player1cam.GetComponent<ThirdPersonCamera>().childCam;
+
+            player1.GetComponent<flightController>().TPC = player1cam;
         }
         if (playerCount > 1)
         {
@@ -49,6 +51,8 @@ public class levelController : MonoBehaviour {
             player2cam.GetComponent<ThirdPersonCamera>().poi = player2.GetComponent<flightController>().POI.transform;
 
             player2.GetComponent<flightController>().cam = player2cam.GetComponent<ThirdPersonCamera>().childCam;
+
+            player2.GetComponent<flightController>().TPC = player2cam;
         }
         if (playerCount > 2)
         {
@@ -60,6 +64,8 @@ public class levelController : MonoBehaviour {
             player3cam.GetComponent<ThirdPersonCamera>().poi = player3.GetComponent<flightController>().POI.transform;
 
             player3.GetComponent<flightController>().cam = player3cam.GetComponent<ThirdPersonCamera>().childCam;
+
+            player3.GetComponent<flightController>().TPC = player3cam;
         }
         if (playerCount > 3)
         {
@@ -71,6 +77,8 @@ public class levelController : MonoBehaviour {
             player4cam.GetComponent<ThirdPersonCamera>().poi = player4.GetComponent<flightController>().POI.transform;
 
             player4.GetComponent<flightController>().cam = player4cam.GetComponent<ThirdPersonCamera>().childCam;
+
+            player4.GetComponent<flightController>().TPC = player4cam;
         }
     }
 	

@@ -15,10 +15,15 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
+  - 
+  - 
+=======
   - Player
   - Boundary
   - Boss
   - Boss_Laser
+>>>>>>> a62ee3c8218f99bd4b25f72763a3de0b386a5df7
   - 
   - 
   - 
@@ -29,6 +34,8 @@ TagManager:
   - 
   - 
   - 
+  - Enemy
+  - Enemy Projectile
   - 
   - 
   - 

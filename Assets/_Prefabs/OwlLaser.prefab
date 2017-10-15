@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 108799332355789358}
   - component: {fileID: 114564515086481678}
   - component: {fileID: 54528070278679604}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: OwlLaser
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33302563396879630}
   - component: {fileID: 136403968031453922}
   - component: {fileID: 23343784776337008}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

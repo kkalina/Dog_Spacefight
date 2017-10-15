@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33087992307180132}
   - component: {fileID: 136906868193278462}
   - component: {fileID: 23949576689051638}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 108223510839910508}
   - component: {fileID: 114777391836685356}
   - component: {fileID: 54584729647726938}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: OwlLaserBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

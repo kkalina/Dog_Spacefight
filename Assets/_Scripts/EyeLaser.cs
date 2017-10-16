@@ -33,7 +33,8 @@ public class EyeLaser : MonoBehaviour {
             transform.LookAt(targetPlayer.transform.position);
             FireLaser();
         }
-        targetPlayer = eyeDetector.targetGO;
+        if (eyeDetector.targetGO != null)
+            targetPlayer = eyeDetector.targetGO;
     }
 
 	// Update is called once per frame

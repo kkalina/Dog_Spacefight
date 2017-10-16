@@ -8,6 +8,8 @@ public class flightController : MonoBehaviour {
     PlayerIndex playerIndex;
     GamePadState state;
 
+    private bool isEnd;
+
     public float pitch;
     public float roll;
     public float pitchSpeed = 1;
@@ -50,6 +52,8 @@ public class flightController : MonoBehaviour {
     public GameObject missileLauncherL;
     public GameObject missileLauncherR;
 
+    private GUIStyle style = new GUIStyle();
+
     // Use this for initialization
     void Start () {
         afterburner.GetComponent<ParticleSystem>().enableEmission = false;
@@ -58,6 +62,8 @@ public class flightController : MonoBehaviour {
         burnerLight.SetActive(false);
         gun2RefireTime = 0.5f * refireDelay;
 
+        style.normal.textColor = Color.red;
+        style.fontSize = 40;
 
         if(playerNumber == 1)
         {
@@ -322,11 +328,22 @@ public class flightController : MonoBehaviour {
 
         this.enabled = false;
 
+        levelController.instance.playerCount -= 1;
+        if (levelController.instance.playerCount <= 1) {
+            isEnd = true;
+            StartCoroutine(EndTIme());
+            Application.LoadLevel("Menu");
+        }
+
         Destroy(this.gameObject);
+
+
     }
 
     public GameObject sparks;
-
+    public IEnumerator EndTIme() {
+        yield return new WaitForSeconds(5);
+    }
     private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Bullet")
@@ -341,6 +358,15 @@ public class flightController : MonoBehaviour {
                 GameObject spark = Instantiate(sparks);
                 spark.transform.position = other.transform.position;
             }
+        }
+    }
+
+    void OnGUI()
+    {
+        if (isEnd)
+        {
+            GUI.Box(new Rect(Screen.width / 3, Screen.height / 3, Screen.width / 3, Screen.height / 4), "GAME OVER", style);
+            //GUI.Box(new Rect(Screen.width / 3, Screen.height / 2, Screen.width / 3, Screen.height / 3), "Press 'R' to restart");
         }
     }
 }

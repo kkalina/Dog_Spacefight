@@ -14,6 +14,7 @@ public class LifeTextController : MonoBehaviour {
 	void Start () {
         style.normal.textColor = Color.green;
         style.fontSize = 25;
+        style.alignment = TextAnchor.MiddleCenter;
         Destroy(gameObject, appearTime);
 	}
 	
@@ -24,6 +25,6 @@ public class LifeTextController : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.Box(new Rect(Screen.width / 2, Screen.height / 5 * 2, Screen.width / 5, Screen.height / 7), "GAIN RIGHT GAIN LIFE", style);
+        GUI.Box(new Rect(Screen.width / 3, Screen.height / 5 * 2, Screen.width / 3, Screen.height / 5), "GAIN RIGHT GAIN LIFE", style);
     }
 }

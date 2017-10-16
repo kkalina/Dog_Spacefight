@@ -10,12 +10,13 @@ public class MenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        style.fontSize = 25;
+        style.fontSize = Screen.height / 16;
         style.alignment = TextAnchor.MiddleCenter;
         style.normal.textColor = Color.white;
-        nameStyle.fontSize = 45;
+        nameStyle.fontSize = Screen.height / 9;
         nameStyle.alignment = TextAnchor.MiddleCenter;
-        nameStyle.normal.textColor = Color.yellow;
+        nameStyle.normal.textColor = Color.red;
+        nameStyle.fontStyle = FontStyle.BoldAndItalic;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +30,11 @@ public class MenuController : MonoBehaviour {
     void OnGUI()
     {
         GUI.Box(new Rect(Screen.width / 3, Screen.height / 7 * 5, Screen.width / 3, Screen.height / 6), "PRESS ANY KEY TO START", style);
-        GUI.Box(new Rect(Screen.width / 5, Screen.height / 7 * 1, Screen.width / 5 * 3, Screen.height / 6), "THIS LINE IS THE NAME OF THE GAME", nameStyle);
+        GUI.Box(new Rect(Screen.width / 5, Screen.height / 15 * 1, Screen.width / 5 * 3, Screen.height / 15 * 2), "Hey Buddy you killed my wife, ", nameStyle);
+        GUI.Box(new Rect(Screen.width / 5, Screen.height / 5, Screen.width / 5 * 3, Screen.height / 15 * 2), "but now we're in space,", nameStyle);
+        GUI.Box(new Rect(Screen.width / 5, Screen.height / 3, Screen.width / 5 * 3, Screen.height / 15 * 2), "I'm gonna kill you: ", nameStyle);
+        GUI.Box(new Rect(Screen.width / 5, Screen.height / 15 * 7, Screen.width / 5 * 3, Screen.height / 15 * 2), "The Game", nameStyle);
+        Debug.Log(Screen.height);
+        Debug.Log(Screen.width);
     }
 }

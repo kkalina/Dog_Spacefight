@@ -27,6 +27,7 @@ public class levelController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        playerCount = playerNumInterface.playerNum;
         instance = this;
         if(playerCount > 0)
         {

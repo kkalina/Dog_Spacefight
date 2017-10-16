@@ -16,18 +16,23 @@ public class RightRandomRotator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		transform.Translate(new Vector3(Random.Range(xmin, xmax), Random.Range(ymin, ymax), Random.Range(zmin, zmax)));
+        Destroy(gameObject, 30);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(Random.insideUnitSphere * Time.deltaTime * speed);
+        transform.Rotate(Vector3.up * Time.deltaTime * speed);
 	}
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<flightController>().playerHealth += 2;
+            if (other.GetComponent<flightController>().playerHealth < 3)
+            {
+                other.GetComponent<flightController>().playerHealth += 0;
+            }
+            Debug.Log(other.GetComponent<flightController>().playerHealth);
             Instantiate(text);
             Destroy(gameObject);
         }       

@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using XInputDotNetPure;
 
+public static class playerNumInterface
+{
+    public static int playerNum;
+}
+
 public class PreStartController : MonoBehaviour {
 
     GUIStyle commandStyle = new GUIStyle();
@@ -30,11 +35,17 @@ public class PreStartController : MonoBehaviour {
     GamePadState prevState3;
     GamePadState prevState4;
 
+    private bool isA = false;
+    private bool isB = false;
+    private bool isC = false;
+    private bool isD = false;
+
 	// Use this for initialization
 	void Start () {
-		commandStyle.fontSize = 15;
+		commandStyle.fontSize = Screen.height / 25;
         commandStyle.alignment = TextAnchor.MiddleCenter;
         commandStyle.normal.textColor = Color.yellow;
+        playerNumInterface.playerNum = 0;
 	}
 
     void FixedUpdate()
@@ -111,6 +122,11 @@ public class PreStartController : MonoBehaviour {
             state1 = GamePad.GetState(player1Index);
             if (prevState1.Buttons.A == ButtonState.Released && state1.Buttons.A == ButtonState.Pressed)
             {
+                if (!isA)
+                {
+                    playerNumInterface.playerNum++;
+                    isA = true;
+                }
                 button1.GetComponent<Renderer>().material.color = Color.red;
             }
         }
@@ -121,6 +137,11 @@ public class PreStartController : MonoBehaviour {
             if (prevState2.Buttons.A == ButtonState.Released && state2.Buttons.A == ButtonState.Pressed)
             {
                 button2.GetComponent<Renderer>().material.color = Color.red;
+                if (!isB)
+                {
+                    playerNumInterface.playerNum++;
+                    isB = true;
+                }
             }
         }
         if (player3IndexSet)
@@ -130,6 +151,11 @@ public class PreStartController : MonoBehaviour {
             if (prevState3.Buttons.A == ButtonState.Released && state3.Buttons.A == ButtonState.Pressed)
             {
                 button3.GetComponent<Renderer>().material.color = Color.red;
+                if (!isC)
+                {
+                    playerNumInterface.playerNum++;
+                    isC = true;
+                }
             }
         }
         if (player4IndexSet)
@@ -139,12 +165,17 @@ public class PreStartController : MonoBehaviour {
             if (prevState4.Buttons.A == ButtonState.Released && state4.Buttons.A == ButtonState.Pressed)
             {
                 button4.GetComponent<Renderer>().material.color = Color.red;
+                if (!isD)
+                {
+                    playerNumInterface.playerNum++;
+                    isD = true;
+                }
             }
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("ModeSelect");
         }
 	}
 
@@ -152,7 +183,7 @@ public class PreStartController : MonoBehaviour {
     {
         if (GUI.Button(new Rect(Screen.width / 5, Screen.height / 9 * 7, Screen.width / 5 * 3, Screen.height / 9), "PRESS 'S' TO START", commandStyle))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("ModeSelect");
         }
     }
 }

@@ -5,20 +5,8 @@ using UnityEngine;
 public class Jellyfish : MonoBehaviour
 {
     public float speed;
-<<<<<<< HEAD
-    public float radius;
-    public float power;
     public GameObject explosion;
-=======
->>>>>>> a62ee3c8218f99bd4b25f72763a3de0b386a5df7
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         this.GetComponent<Rigidbody>().velocity = transform.forward * speed;
@@ -26,7 +14,6 @@ public class Jellyfish : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-<<<<<<< HEAD
         //this.transform.RotateAround(this.transform.up, 180);
         if ((other.gameObject.tag == "Player") || other.gameObject.tag == "Bullet")
         {
@@ -38,9 +25,4 @@ public class Jellyfish : MonoBehaviour
 
    
       
-    }
-=======
-        this.transform.RotateAround(this.transform.up, 180);
-    }
 }
->>>>>>> a62ee3c8218f99bd4b25f72763a3de0b386a5df7

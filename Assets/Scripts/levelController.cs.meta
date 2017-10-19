@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: b64ace27e52bff745967718ed0ec10d6
+timeCreated: 1508099243
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerPrefab: {fileID: 1221327919407746, guid: 2461c46818a15ee498b49284acd1b905,
+      type: 2}
+  - playerCamPrefab: {instanceID: 0}
+  - player1: {instanceID: 0}
+  - player2: {instanceID: 0}
+  - player3: {instanceID: 0}
+  - player4: {instanceID: 0}
+  - player1cam: {instanceID: 0}
+  - player2cam: {instanceID: 0}
+  - player3cam: {instanceID: 0}
+  - player4cam: {instanceID: 0}
+  - P1Spawn: {instanceID: 0}
+  - P2Spawn: {instanceID: 0}
+  - P3Spawn: {instanceID: 0}
+  - P4Spawn: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

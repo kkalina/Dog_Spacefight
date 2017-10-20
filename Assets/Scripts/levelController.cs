@@ -5,6 +5,7 @@ using UnityEngine;
 public class levelController : MonoBehaviour {
 
     public int playerCount = 0;
+    public bool overridePlayerCount = false;
 
     public GameObject playerPrefab;
     public GameObject playerCamPrefab;
@@ -23,11 +24,15 @@ public class levelController : MonoBehaviour {
     public Transform P3Spawn;
     public Transform P4Spawn;
 
+
     public static levelController instance;
 
     // Use this for initialization
     void Start () {
-        playerCount = playerNumInterface.playerNum;
+        if (!overridePlayerCount)
+        {
+            playerCount = playerNumInterface.playerNum;
+        }
         instance = this;
         if(playerCount > 0)
         {

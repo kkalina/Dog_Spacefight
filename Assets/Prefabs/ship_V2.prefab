@@ -1648,7 +1648,7 @@ MonoBehaviour:
   gun1: {fileID: 1696610533538054}
   gun2: {fileID: 1661053072064528}
   POI: {fileID: 1836018712618082}
-  refireDelay: 0.1
+  refireDelay: 0.05
   playerNumber: 1
   numMissilesFollowing: 0
   playerHealth: 3

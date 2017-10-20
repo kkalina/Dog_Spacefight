@@ -144,14 +144,22 @@ public class flightController : MonoBehaviour {
         //    pitch = pitch * staticRotMultiplier;
 
         //}
+        if (!state.IsConnected)
+        {
+            roll = Input.GetAxis("Horizontal");
+            pitch = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            roll = state.ThumbSticks.Left.X;
+            pitch = state.ThumbSticks.Left.Y;
+        }
 
-        roll = state.ThumbSticks.Left.X;
-        pitch = state.ThumbSticks.Left.Y;
+
         if (TPC.GetComponent<ThirdPersonCamera>().stationaryMode)
         {
                 roll = roll * staticRotMultiplier;
                 pitch = pitch * staticRotMultiplier;
-
         }
 
 
@@ -165,21 +173,47 @@ public class flightController : MonoBehaviour {
         this.GetComponent<Rigidbody>().AddTorque(transform.up * yaw * yawSpeed * Time.fixedDeltaTime);
         this.GetComponent<Rigidbody>().AddTorque(transform.right * -1.0f * VYaw * VYawSpeed * Time.fixedDeltaTime);
 
+        bool evasiveMode = false;
+        if (state.IsConnected)
+        {
+            if (state.Buttons.B == ButtonState.Pressed)
+            {
+                evasiveMode = true;
+            }
+        }
+        else
+        {
+            evasiveMode = Input.GetKey(KeyCode.RightShift);
+        }
 
         //if(((Mathf.Abs(state.ThumbSticks.Right.X) > 0.1f) || (Mathf.Abs(state.ThumbSticks.Right.Y) > 0.1f))&&(TPC.GetComponent<ThirdPersonCamera>().stationaryMode == false))
-        if ((state.Buttons.B == ButtonState.Pressed) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == false))
+        if ((evasiveMode) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == false))
         {
             TPC.GetComponent<ThirdPersonCamera>().stationaryMode = true;
             TPC.GetComponent<ThirdPersonCamera>().statRotation = TPC.transform;
         }
         //else if (((Mathf.Abs(state.ThumbSticks.Right.X) < 0.1f) && (Mathf.Abs(state.ThumbSticks.Right.Y) < 0.1f)) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == true))
-        else if ((state.Buttons.B == ButtonState.Released) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == true))
+        else if ((!evasiveMode) && (TPC.GetComponent<ThirdPersonCamera>().stationaryMode == true))
 
         {
             TPC.GetComponent<ThirdPersonCamera>().stationaryMode = false;
         }
 
-        if (state.Buttons.RightShoulder == ButtonState.Pressed)
+        bool accelerator = false;
+        if (!state.IsConnected)
+        {
+            accelerator = Input.GetKey(KeyCode.LeftShift);
+        }
+        else
+        {
+            if (state.Buttons.RightShoulder == ButtonState.Pressed)
+            {
+                accelerator = true;
+            }
+        }
+
+
+        if (accelerator)
         {
             float acc = 0;
             acc = accel * Time.fixedDeltaTime;
@@ -211,6 +245,7 @@ public class flightController : MonoBehaviour {
 
     public GameObject missile;
     private bool leftMissile = false;
+    private bool leftGun = false;
 
     // Update is called once per frame
     void Update () {
@@ -224,12 +259,35 @@ public class flightController : MonoBehaviour {
         this.GetComponent<Rigidbody>().AddTorque(transform.right * pitch * pitchSpeed * Time.deltaTime);
         */
 
+        bool gunTrigger = false;
+
+        if (state.IsConnected)
+        {
             if (state.Buttons.LeftShoulder == ButtonState.Pressed)
+            {
+                gunTrigger = true;
+            }
+        }
+        else
+        {
+            gunTrigger = Input.GetKey(KeyCode.Space);
+        }
+
+        if (gunTrigger)
         {
             gunLight.SetActive(true);
             if (gun1RefireTime <= 0)
             {
-                gun1.GetComponent<gun>().fire();
+                if (leftGun)
+                {
+                    gun1.GetComponent<gun>().fire();
+                    leftGun = false;
+                }
+                else
+                {
+                    gun2.GetComponent<gun>().fire();
+                    leftGun = true;
+                }
                 gun1RefireTime = refireDelay;
             }
             else
@@ -237,27 +295,40 @@ public class flightController : MonoBehaviour {
                 gun1RefireTime -= Time.deltaTime;
             }
 
-            if (gun2RefireTime <= 0)
-            {
-                gun2.GetComponent<gun>().fire();
-                gun2RefireTime = refireDelay;
-            }
-            else
-            {
-                gun2RefireTime -= Time.deltaTime;
-            }
+            //if (gun2RefireTime <= 0)
+            //{
+            //    gun2.GetComponent<gun>().fire();
+            //    gun2RefireTime = refireDelay;
+            //}
+            //else
+            //{
+            //    gun2RefireTime -= Time.deltaTime;
+            //}
             //gun1RefireTime -= Time.deltaTime;
             //gun2RefireTime -= Time.deltaTime;
         }
-
-        if (state.Buttons.LeftShoulder == ButtonState.Released)
+        else
         {
             gunLight.SetActive(false);
             gun1RefireTime = 0;
-            gun2RefireTime = 0.5f * refireDelay;
+            //gun2RefireTime = 0.5f * refireDelay;
         }
 
-            if (((state.Buttons.RightShoulder == ButtonState.Pressed)||(TPC.GetComponent<ThirdPersonCamera>().stationaryMode)) && (!afterburnerOn))
+        bool accelerator = false;
+
+        if (state.IsConnected)
+        {
+            if(state.Buttons.RightShoulder == ButtonState.Pressed)
+            {
+                accelerator = true;
+            }
+        }
+        else
+        {
+            accelerator = Input.GetKey(KeyCode.LeftShift);
+        }
+
+        if ((accelerator||(TPC.GetComponent<ThirdPersonCamera>().stationaryMode)) && (!afterburnerOn))
         {
             afterburner.GetComponent<ParticleSystem>().enableEmission = true;
             ABGlow.GetComponent<ParticleSystem>().enableEmission = true;
@@ -267,7 +338,7 @@ public class flightController : MonoBehaviour {
             cam.GetComponent<shake>().shakeSources++;
             burnerLight.SetActive(true);
         }
-        if (((state.Buttons.RightShoulder == ButtonState.Released)&&(!TPC.GetComponent<ThirdPersonCamera>().stationaryMode)) && (afterburnerOn))
+        if (((!accelerator) && (!TPC.GetComponent<ThirdPersonCamera>().stationaryMode)) && (afterburnerOn))
         {
             afterburner.GetComponent<ParticleSystem>().enableEmission = false;
             ABGlow.GetComponent<ParticleSystem>().enableEmission = false;
